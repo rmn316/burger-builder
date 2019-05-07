@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
-import SiderDrawer from '../Navigation/SideDrawer/SiderDrawer';
+import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 import classes from './Layout.module.css';
 
-const layout = (props) => (
-    <Aux>
-        <Toolbar />
-        <SiderDrawer />
-        <main className={classes.Content}>{props.children}</main>
-    </Aux>
-);
+class Layout extends Component {
 
-export default layout;
+    state = {
+        showSideDraw: true
+    };
+
+    sideDrawClosedHandler = () => {
+        console.log('aaa');
+        this.setState({showSideDraw: false});
+    };
+
+    render() {
+        return (
+            <Aux>
+                <Toolbar />
+                <SideDrawer open={this.state.showSideDraw} closed={this.sideDrawClosedHandler} />
+                <main className={classes.Content}>
+                    {this.props.children}
+                </main>
+            </Aux>
+        );
+    }
+}
+
+export default Layout;
