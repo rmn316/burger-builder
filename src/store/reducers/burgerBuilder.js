@@ -5,6 +5,7 @@ const initialState = {
   ingredients: null,
   totalPrice: 4,
   error: false,
+  building: false,
 };
 
 const INGREDIENT_PRICES = {
@@ -20,6 +21,7 @@ const addIngredient = (state, action) => {
   const updatedState = {
     ingredients: updatedIngredients,
     totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+    building: true,
   };
   return updateObject(state, updatedState);
 };
@@ -30,6 +32,7 @@ const removeIngredient = (state, action) => {
   const updatedState2 = {
     ingredients: updatedIngredients2,
     totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+    building: true,
   };
   return updateObject(state, updatedState2);
 };
@@ -43,6 +46,7 @@ const setIngredients = (state, action) => {
       meat: action.ingredients.meat,
     },
     totalPrice: 4,
+    building: false,
     error: false,
   });
 };
@@ -51,7 +55,7 @@ const fetchIngredientsFailed = (state, action) => {
   return updateObject(state, { error: true });
 };
 
-const burgerBuilder = (state = initialState, action) => {
+const burgerBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:
       return addIngredient(state, action);
@@ -66,4 +70,4 @@ const burgerBuilder = (state = initialState, action) => {
   }
 };
 
-export default burgerBuilder;
+export default burgerBuilderReducer;
