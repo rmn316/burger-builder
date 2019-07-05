@@ -4,7 +4,7 @@ import Redirect from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import actions from '../../store/actions/index';
+import * as actions from '../../store/actions/index';
 
 import classes from './Auth.module.css';
 
@@ -46,7 +46,7 @@ class Auth extends Component {
 
   componentDidMount () {
     if (!this.props.buildingBurger && this.props.authRedirectPath === '/')
-    this.props.onSetRedirectPath()
+    this.props.onSetAuthRedirectPath()
   }
 
   checkValidity = (value, rules) => {
